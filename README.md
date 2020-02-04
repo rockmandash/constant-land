@@ -1,27 +1,17 @@
-# TSDX Bootstrap
+### Now you can delete `constants.(js|ts)` in your projects!
 
-This project was bootstrapped with [TSDX](https://github.com/jaredpalmer/tsdx).
+---
 
-## Local Development
+# Introducing _constant-land_
 
-Below is a list of commands you will probably find useful.
+## The last constants you ever need to declare.
 
-### `npm start` or `yarn start`
+___
 
-Runs the project in development/watch mode. Your project will be rebuilt upon changes. TSDX has a special logger for you convenience. Error messages are pretty printed and formatted for compatibility VS Code's Problems tab.
+### Highlights
 
-<img src="https://user-images.githubusercontent.com/4060187/52168303-574d3a00-26f6-11e9-9f3b-71dbec9ebfcb.gif" width="600" />
-
-Your library will be rebuilt if you make edits.
-
-### `npm run build` or `yarn build`
-
-Bundles the package to the `dist` folder.
-The package is optimized and bundled with Rollup into multiple formats (CommonJS, UMD, and ES Module).
-
-<img src="https://user-images.githubusercontent.com/4060187/52168322-a98e5b00-26f6-11e9-8cf6-222d716b75ef.gif" width="600" />
-
-### `npm test` or `yarn test`
-
-Runs the test watcher (Jest) in an interactive mode.
-By default, runs tests related to files changed since the last commit.
+1. Package is tree-shakable
+1. Constants will use dynamic generation if possible, so the package is small
+1. Every constants is postfix `as const` in TypeScript, so you can actually see the value when hovering in the value in your VSCode
+1. All the constants are UPPER_CASE
+1. Detailed JSDoc description when you hover on the constant
