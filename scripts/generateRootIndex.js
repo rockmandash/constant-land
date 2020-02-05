@@ -3,7 +3,10 @@ const fs = require('fs-extra');
 const glob = require('glob');
 
 const srcPath = path.resolve(__dirname, '../src');
-const fullPaths = glob.sync(path.resolve(__dirname, '../src/**/*.ts'));
+const fullPaths = glob
+  .sync(path.resolve(__dirname, '../src/**/*.ts'))
+  .filter(fullPath => !fullPath.includes('src/index.ts'));
+
 const regex = /export const .+ = /g;
 
 const rootIndexData = fullPaths
@@ -14,7 +17,9 @@ const rootIndexData = fullPaths
       .match(regex)
       .map(header => header.replace('export const ', '').replace(' = ', ''));
 
-    return `export { ${exportConstants.join(', ')} } from './${relativePath}'`;
+    return `export { ${exportConstants.join(
+      ', '
+    )} } from './${relativePath.replace('.ts', '')}'`;
   })
   .join('\n ');
 
