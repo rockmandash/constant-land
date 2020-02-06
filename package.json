@@ -15,7 +15,7 @@
     "start": "yarn run generateRootIndex && tsdx watch",
     "build": "yarn run generateRootIndex && tsdx build",
     "prepare": "yarn run generateRootIndex && tsdx build",
-    "release": "np -yolo",
+    "release": "np -yolo --no-tests",
     "format": "prettier --config ./.prettierrc --write '**/*.{ts,js,css,html,json,vue}'",
     "docs": "yarn run generateRootIndex && typedoc --out docs src && surge docs constant-land.surge.sh"
   },
