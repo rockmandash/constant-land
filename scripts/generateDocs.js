@@ -16,7 +16,7 @@ categories.forEach(category => {
         `# ${keys}`,
         '',
         '```js',
-        value,
+        JSON.stringify(value),
         '```',
         ''
       )
