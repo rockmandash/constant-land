@@ -24,7 +24,7 @@ categories.forEach(category => {
     .join('\n');
 
   fs.outputFileSync(
-    path.resolve(__dirname, `../example/src/docs/${category}.md`),
+    path.resolve(__dirname, `../docs/${category}.md`),
     finalData
   );
 });
