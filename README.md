@@ -15,3 +15,5 @@ ___
 1. Every constants is postfix `as const` in TypeScript, so you can actually see the value when hovering in the value in your VSCode
 1. All the constants are UPPER_CASE
 1. Detailed JSDoc description when you hover on the constant
+
+See Documents: https://constant-land.surge.sh/
