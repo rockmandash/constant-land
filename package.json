@@ -14,7 +14,8 @@
     "lint": "echo 'TODO'",
     "prepare": "yarn run generateRootIndex && tsdx build",
     "release": "np -yolo",
-    "format": "prettier --config ./.prettierrc --write '**/*.{ts,js,css,html,json,vue}'"
+    "format": "prettier --config ./.prettierrc --write '**/*.{ts,js,css,html,json,vue}'",
+    "docs": "yarn run generateRootIndex && typedoc --out docs src"
   },
   "name": "constant-land",
   "author": "Joseph Wang",
@@ -28,6 +29,7 @@
     "prettier": "^1.19.1",
     "tsdx": "^0.12.3",
     "tslib": "^1.10.0",
+    "typedoc": "^0.16.9",
     "typescript": "^3.7.5",
     "vuepress": "^1.3.0"
   }
