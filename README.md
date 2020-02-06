@@ -16,4 +16,10 @@ ___
 1. All the constants are UPPER_CASE
 1. Detailed JSDoc description when you hover on the constant
 
-See Documents: https://constant-land.surge.sh/
+---
+
+See Documents: https://constant-land.surge.sh
+
+See NPM package: https://www.npmjs.com/package/constant-land
+
+See Github Page: https://github.com/rockmandash/constant-land
