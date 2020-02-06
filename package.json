@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "generateRootIndex": "node ./scripts/generateRootIndex.js",
+    "generateDocs": "yarn run build && node ./scripts/generateDocs.js",
     "start": "yarn run generateRootIndex && tsdx watch",
     "build": "yarn run generateRootIndex && tsdx build",
     "test": "echo 'TODO'",

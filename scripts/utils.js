@@ -2,7 +2,6 @@ const path = require('path');
 const glob = require('glob');
 
 const srcPath = path.resolve(__dirname, '../src');
-const docsPath = path.resolve(__dirname, '../docs');
 
 const joinLines = (...rest) => rest.join('\n');
 
@@ -18,6 +17,5 @@ module.exports = {
   joinLines,
   fullPathsWithoutRootIndex,
   srcPath,
-  docsPath,
   categories
 };
