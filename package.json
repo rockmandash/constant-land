@@ -8,16 +8,13 @@
   ],
   "scripts": {
     "generateRootIndex": "node ./scripts/generateRootIndex.js",
-    "generateDocs": "yarn run build && node ./scripts/generateDocs.js",
     "start": "yarn run generateRootIndex && tsdx watch",
     "build": "yarn run generateRootIndex && tsdx build",
     "test": "echo 'TODO'",
     "lint": "echo 'TODO'",
     "prepare": "yarn run generateRootIndex && tsdx build",
     "release": "np -yolo",
-    "format": "prettier --config ./.prettierrc --write '**/*.{ts,js,css,html,json,vue}'",
-    "docs:dev": "yarn run generateDocs && vuepress dev docs",
-    "docs:build": "yarn run generateDocs && vuepress build docs"
+    "format": "prettier --config ./.prettierrc --write '**/*.{ts,js,css,html,json,vue}'"
   },
   "name": "constant-land",
   "author": "Joseph Wang",
