@@ -16,8 +16,8 @@
     "prepare": "yarn run generateRootIndex && tsdx build",
     "release": "np -yolo",
     "format": "prettier --config ./.prettierrc --write '**/*.{ts,js,css,html,json,vue}'",
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
+    "docs:dev": "yarn run generateDocs && vuepress dev docs",
+    "docs:build": "yarn run generateDocs && vuepress build docs"
   },
   "name": "constant-land",
   "author": "Joseph Wang",
