@@ -9,18 +9,44 @@ const fullPaths = glob
 
 const regex = /export const .+ = /g;
 
-const rootIndexData = fullPaths
-  .map(fullPath => {
+const processFullPaths = fullPaths =>
+  fullPaths.map(fullPath => {
+    const category = path.basename(fullPath, '.ts');
     const relativePath = path.relative(srcPath, fullPath);
     const tsFileData = fs.readFileSync(fullPath, { encoding: 'utf8' });
     const exportConstants = tsFileData
       .match(regex)
       .map(header => header.replace('export const ', '').replace(' = ', ''));
 
-    return `export { ${exportConstants.join(
-      ', '
-    )} } from './${relativePath.replace('.ts', '')}'`;
-  })
+    const exportConstantsObjString = `{ ${exportConstants.join(', ')} }`;
+    const exportConstantsFromPath = `'./${relativePath.replace('.ts', '')}'`;
+    const importStringForConstants = `import ${exportConstantsObjString} from ${exportConstantsFromPath};`;
+    const exportStringForConstants = `export ${exportConstantsObjString};`;
+    const exportStringForCategory = `export const ${category} = ${exportConstantsObjString} as const;`;
+
+    return {
+      importStringForConstants,
+      exportStringForConstants,
+      exportStringForCategory
+    };
+  });
+
+const rootIndexDataImports = processFullPaths(fullPaths)
+  .map(({ importStringForConstants }) => importStringForConstants)
   .join('\n ');
 
-fs.outputFileSync(path.resolve(srcPath, './index.ts'), rootIndexData);
+const rootIndexDataExportsAndCategory = processFullPaths(fullPaths)
+  .map(
+    ({ exportStringForConstants, exportStringForCategory }) => `
+  ${exportStringForConstants}
+  ${exportStringForCategory}
+  `
+  )
+  .join('\n ');
+
+const finalData = `
+${rootIndexDataImports}
+${rootIndexDataExportsAndCategory}
+`;
+
+fs.outputFileSync(path.resolve(srcPath, './index.ts'), finalData);
