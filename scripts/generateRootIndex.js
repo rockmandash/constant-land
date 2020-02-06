@@ -1,13 +1,6 @@
 const path = require('path');
 const fs = require('fs-extra');
-const glob = require('glob');
-
-const joinLines = (...rest) => rest.join('\n');
-
-const srcPath = path.resolve(__dirname, '../src');
-const fullPaths = glob
-  .sync(path.resolve(__dirname, '../src/**/*.ts'))
-  .filter(fullPath => !fullPath.includes('src/index.ts'));
+const { joinLines, fullPathsWithoutRootIndex, srcPath } = require('./utils');
 
 const regex = /export const .+ = /g;
 
@@ -33,11 +26,13 @@ const processFullPaths = fullPaths =>
     };
   });
 
-const rootIndexDataImports = processFullPaths(fullPaths)
+const rootIndexDataImports = processFullPaths(fullPathsWithoutRootIndex)
   .map(({ importStringForConstants }) => importStringForConstants)
   .join('\n');
 
-const rootIndexDataExportsAndCategory = processFullPaths(fullPaths)
+const rootIndexDataExportsAndCategory = processFullPaths(
+  fullPathsWithoutRootIndex
+)
   .map(({ exportStringForConstants, exportStringForCategory }) =>
     joinLines(exportStringForConstants, exportStringForCategory)
   )
