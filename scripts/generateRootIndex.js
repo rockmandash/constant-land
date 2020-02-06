@@ -2,6 +2,8 @@ const path = require('path');
 const fs = require('fs-extra');
 const glob = require('glob');
 
+const joinLines = (...rest) => rest.join('\n');
+
 const srcPath = path.resolve(__dirname, '../src');
 const fullPaths = glob
   .sync(path.resolve(__dirname, '../src/**/*.ts'))
@@ -33,20 +35,17 @@ const processFullPaths = fullPaths =>
 
 const rootIndexDataImports = processFullPaths(fullPaths)
   .map(({ importStringForConstants }) => importStringForConstants)
-  .join('\n ');
+  .join('\n');
 
 const rootIndexDataExportsAndCategory = processFullPaths(fullPaths)
-  .map(
-    ({ exportStringForConstants, exportStringForCategory }) => `
-  ${exportStringForConstants}
-  ${exportStringForCategory}
-  `
+  .map(({ exportStringForConstants, exportStringForCategory }) =>
+    joinLines(exportStringForConstants, exportStringForCategory)
   )
-  .join('\n ');
+  .join('\n');
 
-const finalData = `
-${rootIndexDataImports}
-${rootIndexDataExportsAndCategory}
-`;
+const finalData = joinLines(
+  rootIndexDataImports,
+  rootIndexDataExportsAndCategory
+);
 
 fs.outputFileSync(path.resolve(srcPath, './index.ts'), finalData);
